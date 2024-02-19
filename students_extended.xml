@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <student>
+        <name>John Doe</name>
+        <age>20</age>
+        <gender>Male</gender>
+        <class>12A</class>
+        <subjects>
+            <subject>
+                <name>Math</name>
+                <grade>A</grade>
+            </subject>
+            <subject>
+                <name>Physics</name>
+                <grade>B</grade>
+            </subject>
+            <subject>
+                <name>English</name>
+                <grade>A-</grade>
+            </subject>
+        </subjects>
+    </student>
+
+    <student>
+        <name>Jane Doe</name>
+        <age>19</age>
+        <gender>Female</gender>
+        <class>12A</class>
+        <subjects>
+            <subject>
+                <name>Math</name>
+                <grade>B</grade>
+            </subject>
+            <subject>
+                <name>Physics</name>
+                <grade>A</grade>
+            </subject>
+            <subject>
+                <name>English</name>
+                <grade>B+</grade>
+            </subject>
+    </student>
+
+    <student>
+        <name>John Smith</name>
+        <age>21</age>
+        <gender>Male</gender>
+        <class>12B</class>
+        <subjects>
+            <subject>
+                <name>Math</name>
+                <grade>A</grade>
+            </subject>
+            <subject>
+                <name>Physics</name>
+                <grade>A</grade>
+            </subject>
+            <subject>
+                <name>English</name>
+                <grade>A</grade>
+            </subject>
+    </student>
+
+    <student>
+        <name>Jane Smith</name>
+        <age>20</age>
+        <gender>Female</gender>
+        <class>12B</class>
+        <subjects>
+            <subject>
+                <name>Math</name>
+                <grade>B</grade>
+            </subject>
+            <subject>
+                <name>Physics</name>
+                <grade>B</grade>
+            </subject>
+            <subject>
+                <name>English</name>
+                <grade>B</grade>
+            </subject>
+    </student>
+
+    <student>
+        <name>John Brown</name>
+        <age>22</age>
+        <gender>Male</gender>
+        <class>12C</class>
+        <subjects>
+            <subject>
+                <name>Math</name>
+                <grade>A</grade>
+            </subject>
+            <subject>
+                <name>Physics</name>
+                <grade>A</grade>
+            </subject>
+            <subject>
+                <name>English</name>
+                <grade>A</grade>
+            </subject>
+    </student>
+
+</students>
