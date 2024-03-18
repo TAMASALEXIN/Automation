@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, jsonify
+from flask import Flask, request, redirect, jsonify 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import string
@@ -34,7 +34,7 @@ def shorten_url():
         if URL.query.filter_by(shortcode=shortcode).first():
             return jsonify(error='Shortcode already in use'), 409
     else:
-        shortcode = ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=6))
+        shortcode = ''.join(random.choices("_" + string.ascii_uppercase + string.ascii_lowercase + string.digits, k=6))
 
     new_url = URL(url=data['url'], shortcode=shortcode)
     db.session.add(new_url)
@@ -53,7 +53,6 @@ def redirect_to_url(shortcode):
     url.last_redirect = datetime.utcnow()
     url.redirect_count += 1
     db.session.commit()
-
     return redirect(url.url, code=302)
 
 
