@@ -16,6 +16,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 
 def init_browser():
     driver = webdriver.Chrome()
@@ -35,46 +36,62 @@ def search_actor(driver, actor):
         time.sleep(2)
     except:
         pass
-    try:
-        
-        see_all_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.LINK_TEXT, "See all")))
-        see_all_button.click()
-    except:
-        pass
     return driver.current_url
 
 
 
-def get_movies(url):
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
-    }
-    response = requests.get(url, headers=headers)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    acc_div = soup.find_all("div", class_='ipc-accordion__item__content_inner accordion-content')
-    movies = []
-    for divs in acc_div:
-        links = divs.find_all('a' , class_='ipc-metadata-list-summary-item__t')
-    for link in links:
-        movies.append(link.text)
 
-    print(movies)
+def get_movies(driver, url):
+    movies = []
+
+    try :
+        previous_movies = driver.find_element(By.XPATH, '//*[@id="actor-previous-projects"]/div[1]/label')
+        previous_movies.send_keys(Keys.ENTER)
+    except:
+        pass
+    time.sleep(2)
+
+    try :
+        see_all = driver.find_element(By.XPATH, '//*[@id="accordion-item-actress-previous-projects"]/div/div/span/button')
+        see_all.send_keys(Keys.ENTER)
+    except:
+        pass
+    time.sleep(2)
+
+    try:
+        all_title = driver.find_elements(By.XPATH, "//*[@id='accordion-item-actor-previous-projects']/div/ul/li/div[2]/div[1]/a")
+        time.sleep(2)
+        for title in all_title:
+            movies.append(title.text)
+    except:
+        pass
+
+    try:
+        all_title = driver.find_elements(By.XPATH, '//*[@id="accordion-item-actress-previous-projects"]/div/ul/li/div[2]/div[1]/a')
+        time.sleep(2)
+        for title in all_title:
+            movies.append(title.text)
+    except:
+        pass
+
+    return movies
 
 
 
 def main():
     driver = init_browser()
     brad_pitt_url = search_actor(driver, "Brad Pitt")
-    brad_pitt_movies = get_movies(brad_pitt_url)
+    brad_pitt_movies = get_movies(driver,brad_pitt_url)
     angelina_jolie_url = search_actor(driver, "Angelina Jolie")
-    angelina_jolie_movies = get_movies(angelina_jolie_url)
+    angelina_jolie_movies = get_movies(driver, angelina_jolie_url)
     driver.quit()
-    return set(brad_pitt_movies).intersection(angelina_jolie_movies)
+    movies_together = set(brad_pitt_movies).intersection(angelina_jolie_movies)
+    print(movies_together)
 
 if __name__ == "__main__":
     main()
 
 # Output:
 # {'Mr. & Mrs. Smith', 'By the Sea'}
+
 

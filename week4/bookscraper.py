@@ -12,6 +12,8 @@ def scrape_books(url, counter):
         title = book.find('h3').find('a').get('title')
         words = re.findall(r'\w+', title.lower())  
         counter.update(words) 
+        prices = book.find('p', class_='price_color').text
+        
 
     next = soup.find('li', class_='next')
     if next:

@@ -34,7 +34,12 @@ def shorten_url():
         if URL.query.filter_by(shortcode=shortcode).first():
             return jsonify(error='Shortcode already in use'), 409
     else:
-        shortcode = ''.join(random.choices("_" + string.ascii_uppercase + string.ascii_lowercase + string.digits, k=6))
+        if not (len(shortcode) == 6 and shortcode.isalnum()) or shortcode not in (string.ascii_uppercase + string.ascii_letters + string.digits + "_"):
+            return jsonify(error='Shortcode is not valid'), 412
+        else:
+            shortcode = ''.join(random.choices("_" + string.ascii_uppercase + string.ascii_lowercase + string.digits, k=6))
+
+    
 
     new_url = URL(url=data['url'], shortcode=shortcode)
     db.session.add(new_url)
