@@ -19,7 +19,7 @@ class URL(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String(500), nullable=False)
     shortcode = db.Column(db.String(6), unique=True, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created = db.Column(db.DateTime, default=datetime.utcnow)
     last_redirect = db.Column(db.DateTime)
     redirect_count = db.Column(db.Integer, default=0)
 

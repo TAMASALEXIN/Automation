@@ -33,13 +33,17 @@ This is a simple URL shortener application built with Flask and SQLAlchemy.
     python app.py
     ```
 
+    Note: When you run the server with `python app.py`, it will be running on port 8000.
+
 5. **Run the Server**: Finally, start the Flask development server:
 
     ```bash
     flask run
     ```
 
-Now, your application should be running at `http://localhost:5000`. You can interact with it using the `/shorten`, `/<shortcode>`, and `/<shortcode>/stats` endpoints.
+    Note: When you run the server with `flask run`, it will be running on port 5000.
+
+Now, your application should be running at `http://localhost:5000` or `http://localhost:8000` depending on how you started it. You can interact with it using the `/shorten`, `/<shortcode>`, and `/<shortcode>/stats` endpoints.
 
 Remember to replace the commands with the appropriate ones for your operating system if you're not using a Unix-like system.
 
